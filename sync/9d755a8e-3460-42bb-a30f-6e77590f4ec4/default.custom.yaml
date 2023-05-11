@@ -1,0 +1,12 @@
+# default.custom.yaml
+# save it to:
+#   ~/.config/ibus/rime  (linux)
+#   ~/Library/Rime       (macos)
+#   %APPDATA%\Rime       (windows)
+
+patch:
+  schema_list:
+    - schema: wubi06_pinyin
+    - schema: wubi_pinyin
+    
+#   sync_dir: '/Users/zhangkefeng/works/data/OneDrive/RimeSync'

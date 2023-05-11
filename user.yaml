@@ -1,0 +1,18 @@
+var:
+  last_build_time: 1681378368
+  option:
+    ascii_punct: false
+    extended_charset: true
+    full_shape: false
+  previously_selected_schema: wubi_pinyin
+  schema_access_time:
+    clover: 1680397168
+    double_pinyin: 1680242812
+    double_pinyin_flypy: 1680228566
+    luna_pinyin: 1680231368
+    luna_pinyin_simp: 1680008850
+    pinyin_simp: 1680008107
+    rime_ice: 1680395874
+    wubi06_pinyin: 1680355976
+    wubi86: 1680395589
+    wubi_pinyin: 1680697388

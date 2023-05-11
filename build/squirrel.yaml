@@ -1,0 +1,166 @@
+__build_info:
+  rime_version: 1.8.5
+  timestamps:
+    squirrel: 1680225072
+    squirrel.custom: 1681378364
+chord_duration: 0.1
+config_version: "2023-02-27"
+keyboard_layout: default
+preset_color_schemes:
+  "app_options/com.DanPristupov.Fork":
+    ascii_mode: true
+  "app_options/com.ScooterSoftware.BeyondCompare":
+    ascii_mode: true
+  "app_options/com.agilebits.onepassword4":
+    ascii_mode: true
+  "app_options/com.apple.Safari":
+    ascii_mode: true
+  "app_options/com.apple.Terminal":
+    ascii_mode: true
+  "app_options/com.apple.TextEdit":
+    ascii_mode: true
+  "app_options/com.apple.iChat":
+    ascii_mode: true
+  "app_options/com.apple.mail":
+    ascii_mode: true
+  "app_options/com.apple.reminders":
+    ascii_mode: true
+  "app_options/com.apptorium.Expressions":
+    ascii_mode: true
+  "app_options/com.bohemiancoding.sketch3":
+    ascii_mode: true
+  "app_options/com.fotonauts.MongoHub":
+    ascii_mode: true
+  "app_options/com.google.Chrome":
+    ascii_mode: true
+  "app_options/com.googlecode.iterm2":
+    ascii_mode: true
+  "app_options/com.happenapps.Quiver":
+    ascii_mode: true
+  "app_options/com.hnc.Discord":
+    ascii_mode: true
+  "app_options/com.initex.proxifier.macosx":
+    ascii_mode: true
+  "app_options/com.jetbrains.PhpStorm":
+    ascii_mode: true
+  "app_options/com.jetbrains.WebStorm":
+    ascii_mode: true
+  "app_options/com.jetbrains.datagrip":
+    ascii_mode: true
+  "app_options/com.jetbrains.pycharm":
+    ascii_mode: true
+  "app_options/com.kapeli.dashdoc":
+    ascii_mode: true
+  "app_options/com.lastpass.LastPass":
+    ascii_mode: true
+  "app_options/com.microsoft.VSCode":
+    ascii_mode: true
+  "app_options/com.nssurge.surge-mac":
+    ascii_mode: true
+  "app_options/com.qiuyuzhou.ShadowsocksX-NG":
+    ascii_mode: true
+  "app_options/com.realvnc.vncviewer":
+    ascii_mode: true
+  "app_options/com.runningwithcrayons.Alfred-3":
+    ascii_mode: true
+  "app_options/com.sequelpro.SequelPro":
+    ascii_mode: true
+  "app_options/com.skype.skype":
+    ascii_mode: true
+  "app_options/com.spotify.client":
+    ascii_mode: true
+  "app_options/com.sublimetext.3":
+    ascii_mode: true
+  "app_options/com.tapbots.TweetbotMac":
+    ascii_mode: true
+  "app_options/com.teamviewer.TeamViewer":
+    ascii_mode: true
+  "app_options/com.tencent.xinWeChat":
+    ascii_mode: false
+  "app_options/com.tinyspeck.slackmacgap":
+    ascii_mode: true
+  "app_options/com.tumult.Hype2":
+    ascii_mode: true
+  "app_options/com.velestar.vssh.osx":
+    ascii_mode: true
+  "app_options/org.mozilla.firefox":
+    ascii_mode: true
+  "app_options/org.wireshark.Wireshark":
+    ascii_mode: true
+  "app_options/pl.com.salsoft.SQLiteStudio":
+    ascii_mode: true
+  calm:
+    back_color: 0xEFEFF4
+    border_color: 0x8E8E93
+    border_height: 5
+    border_width: 10
+    candidate_format: "%c %@ "
+    candidate_text_color: 0x888888
+    comment_text_color: 0x5AC461
+    corner_radius: 5
+    font_point: 20
+    hilited_back_color: 0xEFEFF4
+    hilited_candidate_back_color: 0x00ffffff
+    hilited_candidate_label_color: 0x888888
+    hilited_candidate_text_color: 0x000000
+    hilited_comment_text_color: 0xF19C38
+    hilited_text_color: 0x8E8E93
+    horizontal: true
+    inline_preedit: true
+    label_color: 0x8E8E93
+    label_font_point: 18
+    line_spacing: 5
+    name: "安静"
+    spacing: 5
+  mac_green:
+    back_color: 0xFFFFFF
+    border_color: 0xFFFFFF
+    border_height: 4
+    border_width: 4
+    candidate_format: "%c %@ "
+    candidate_text_color: 0x3c3c3c
+    comment_text_color: 0x999999
+    corner_radius: 5
+    font_face: PingFangSC
+    font_point: 16
+    hilited_candidate_back_color: 0x32A14C
+    hilited_candidate_label_color: 0xFFFFFF
+    hilited_candidate_text_color: 0xFFFFFF
+    hilited_comment_text_color: 0x999999
+    hilited_corner_radius: 5
+    hilited_text_color: 0x999999
+    horizontal: true
+    label_color: 0x999999
+    label_font_point: 13
+    line_spacing: 10
+    name: "Mac绿色"
+    text_color: 0x424242
+  maple_magenta:
+    alpha: 1.0
+    author: "KyleBing <https://kylebing.cn>"
+    back_color: 0xF4F4F6
+    border_color: 0xDAE0DA
+    border_height: 5
+    border_width: 5
+    candidate_format: "%c %@ "
+    candidate_text_color: 0x222222
+    comment_text_color: 0x5AC461
+    corner_radius: 5
+    font_point: 18
+    hilited_back_color: 0xEFEFF4
+    hilited_candidate_back_color: 0xEDEDF9
+    hilited_candidate_label_color: 0x884F11FA
+    hilited_candidate_text_color: 0x4F11FA
+    hilited_comment_text_color: 0xF19C38
+    hilited_corner_radius: 5
+    hilited_text_color: 0x8E8E93
+    horizontal: true
+    inline_preedit: true
+    label_color: 0xaaaaaa
+    label_font_point: 18
+    line_spacing: 5
+    name: "玫枫 / Maple Magenta"
+    spacing: 5
+show_notifications_when: appropriate
+style:
+  color_scheme: calm

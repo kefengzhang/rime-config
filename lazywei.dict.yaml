@@ -1,0 +1,19 @@
+# Rime dictionary
+# encoding: utf-8
+
+---
+name: lazywei
+version: "2013.04.23"
+sort: by_weight
+use_preset_vocabulary: true
+# 從 luna_pinyin.dict.yaml 導入包含單字的碼表
+import_tables:
+#   - luna_pinyin
+  - luna_pinyin.comprehensive
+...
+
+# table begins
+
+# 自定義的詞條  
+  
+软硬度	ruan ying du

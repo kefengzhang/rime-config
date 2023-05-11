@@ -1,0 +1,16 @@
+# default.custom.yaml
+# save it to:
+#   ~/.config/ibus/rime  (linux)
+#   ~/Library/Rime       (macos)
+#   %APPDATA%\Rime       (windows)
+
+patch:
+  "menu/page_size": 9
+  schema_list:
+    - schema: clover
+#     - schema: wubi06_pinyin
+    - schema: wubi_pinyin
+#     - schema: pinyin_simp
+#     - schema: double_pinyin
+    
+#   sync_dir: '/Users/zhangkefeng/works/data/OneDrive/RimeSync'

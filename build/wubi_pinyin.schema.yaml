@@ -1,0 +1,98 @@
+__build_info:
+  rime_version: 1.8.5
+  timestamps:
+    default: 1681283773
+    default.custom: 1680666522
+    wubi_pinyin.custom: 0
+    wubi_pinyin.schema: 1681376464
+abc_segmentor:
+  extra_tags:
+    - reverse_lookup
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - reverse_lookup_translator
+    - table_translator
+key_binder:
+  bindings:
+    - {accept: "Shift+Tab", send: "Shift+Left", when: composing}
+    - {accept: Tab, send: "Shift+Right", when: composing}
+    - {accept: minus, send: Page_Up, when: has_menu}
+    - {accept: equal, send: Page_Down, when: has_menu}
+    - {accept: "Control+Shift+3", toggle: ascii_punct, when: always}
+    - {accept: "Control+Shift+4", toggle: traditionalization, when: always}
+  import_preset: default
+  select_last_character: grave
+menu:
+  page_size: 9
+punctuator:
+  import_preset: default
+recognizer:
+  import_preset: default
+  patterns:
+    reverse_lookup: "`[a-z]*'?$"
+reverse_lookup:
+  dictionary: clover
+  preedit_format:
+    - "xform/([nl])v/$1ü/"
+    - "xform/([nl])ue/$1üe/"
+    - "xform/([jqxy])v/$1u/"
+  prefix: "`"
+  suffix: "'"
+  tips: "〔拼音〕"
+schema:
+  author:
+    - "發明人 王永民先生"
+  dependencies:
+    - clover
+  description: |
+    五筆字型86版＋漢語拼音混合輸入。
+    碼表源自 ibus-table
+
+  name: "五笔·拼音"
+  schema_id: wubi_pinyin
+  version: 0.9
+speller:
+  delimiter: " ;'"
+  max_code_length: 10
+switches:
+  - name: ascii_mode
+    reset: 1
+    states: ["中文", "西文"]
+  - name: full_shape
+    reset: 0
+    states: ["半角", "全角"]
+  - name: extended_charset
+    reset: 0
+    states: ["常用", "增廣"]
+  - name: simplification
+    reset: 1
+    states: ["漢字", "汉字"]
+  - name: ascii_punct
+    reset: 1
+    states: ["。，", "．，"]
+translator:
+  dictionary: wubi86
+  disable_user_dict_for_patterns:
+    - "^z.*$"
+  enable_charset_filter: true
+  enable_encoder: true
+  enable_sentence: true
+  encode_commit_history: true
+  max_phrase_length: 4
+  prism: wubi_pinyin
