@@ -1,6 +1,6 @@
 patch:
   style:
-    color_scheme: wechat_light              # 写当前名，也就是下面皮肤的 name 内容
+    color_scheme: wechat_dark              # 写当前名，也就是下面皮肤的 name 内容
 
   #-----------------#
   #    颜色使用说明   #
@@ -87,7 +87,7 @@ patch:
       comment_text_color: 0x999999              # 拼音等提示文字颜色
       corner_radius: 5                          # 窗口圆角
       hilited_corner_radius: 5                  # 高亮圆角
-      font_face: LXGWWenKaiScreenR                     # 候选词字体
+      font_face: TsangerJinKai03-W04                     # 候选词字体
       font_point: 28                            # 候选字大小
       hilited_candidate_back_color: 0x75B100    # 第一候选项背景色
       hilited_candidate_text_color: 0xFFFFFF    # 第一候选项文字颜色
@@ -105,7 +105,7 @@ patch:
       comment_text_color: 0x999999              # 拼音等提示文字颜色
       corner_radius: 5                          # 窗口圆角
       hilited_corner_radius: 5                  # 高亮圆角
-      font_face: LXGWWenKaiScreenR                     # 候选词字体
+      font_face: TsangerJinKai03-W04                     # 候选词字体
       font_point: 28                            # 候选字大小
       hilited_candidate_back_color: 0x75B100    # 第一候选项背景色
       hilited_candidate_text_color: 0xFFFFFF    # 第一候选项文字颜色
@@ -196,7 +196,7 @@ patch:
       line_spacing: 10                              # 行间距(适用于竖排)
       border_height: 4                             # 窗口上下高度，大于圆角半径才生效
       border_width: 4                              # 窗口左右宽度，大于圆角半径才生效
-      font_face: "PingFangSC"                      # 候选词字体
+      font_face: TsangerJinKai03-W04                      # 候选词字体
       font_point: 16                               # 候选字大小
       label_font_point: 13                         # 候选编号大小
       text_color: 0x424242                    # 拼音行文字颜色
@@ -544,5 +544,7 @@ patch:
         ascii_mode: true
     app_options/com.microsoft.VSCode:
         ascii_mode: true
-    app_options/com.tencent.xinWeChat:
-        ascii_mode: false
+    app_options/dev.warp.Warp-Stable:
+        ascii_mode: true
+    app_options/net.leocode.nuoshell:
+        ascii_mode: true

@@ -26,6 +26,12 @@ show_notifications_when: appropriate
 
 # ascii_mode、inline、no_inline、vim_mode 等等设定，可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
 app_options:
+  com.tencent.xinWeChat:
+    ascii_mode: false   # 关闭默认英文
+  com.electron.lark:
+    ascii_mode: false   # 关闭默认英文
+  com.microsoft.onenote.mac:
+    ascii_mode: false   # 关闭默认英文
   # com.apple.Spotlight:
   #   ascii_mode: true    # 开启默认英文
   # com.microsoft.VSCode:
