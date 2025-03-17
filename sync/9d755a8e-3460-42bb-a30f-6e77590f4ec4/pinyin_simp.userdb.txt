@@ -1,6 +1,0 @@
-# Rime user dictionary
-#@/db_name	pinyin_simp
-#@/db_type	userdb
-#@/rime_version	1.8.5
-#@/tick	0
-#@/user_id	9d755a8e-3460-42bb-a30f-6e77590f4ec4
