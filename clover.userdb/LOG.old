@@ -1,3 +1,2 @@
-2023/04/02-08:59:26.688185 0x10ab04dc0 Recovering log #26
-2023/04/02-08:59:26.710214 0x10ab04dc0 Delete type=3 #25
-2023/04/02-08:59:26.710258 0x10ab04dc0 Delete type=0 #26
+2025/03/17-15:39:53.907954 0x16b763000 Table #5: 13 entries OK
+2025/03/17-15:39:53.912644 0x16b763000 **** Repaired leveldb /Users/zhangkefeng/Library/Rime/clover.userdb; recovered 1 files; 426 bytes. Some data may have been lost. ****
