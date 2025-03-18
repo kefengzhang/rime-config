@@ -1,6 +1,30 @@
 patch:
   style:
-    color_scheme: wechat_dark              # 写当前名，也就是下面皮肤的 name 内容
+    color_scheme: wechat_light              # 写当前名，也就是下面皮肤的 name 内容
+    color_scheme_dark: wechat_dark
+
+
+    text_orientation: horizontal # horizontal | vertical
+    candidate_list_layout: linear #linear-候选词水平排列/stacked-垂直排列（ 1.0.0 之后生效）
+    memorize_size: true
+    inline_preedit: true
+    corner_radius: 10
+    hilited_corner_radius: 10
+    border_height: 0
+    border_width: 0
+    line_spacing: 5
+    spacing: 10
+    font_face: "TsangerJinKai03-W04"
+    font_point: 14
+    label_font_face: "TsangerJinKai03-W04"
+    label_font_point: 12
+    comment_font_face: "TsangerJinKai03-W04"
+    comment_font_point: 24
+    shadow_size: 8
+    candidate_format: "%c.%@" #设置每个候选词之间的间隔距离，%c 代表备选的数字，%@代表候选字，可以通过输入空格的形式来调整每个候选字之间的间隔距离
+    blur: true #模糊效果
+    translucency: true #毛玻璃效果
+    color_space: display_p3 #色域
 
   #-----------------#
   #    颜色使用说明   #
@@ -94,6 +118,10 @@ patch:
       label_font_point: 12                      # 候选编号大小
       text_color: 0x424242                      # 拼音行文字颜色
       inline_preedit: true                      # 拼音位于： 候选框 false | 行内 true
+      # 选中区域配色
+      hilited_candidate_shadow_color: 0xDDDDDD # 阴影
+      # 候选框配色
+      shadow_color: 0xDDDDDD
 
     wechat_dark:
       name: 微信键盘深色
