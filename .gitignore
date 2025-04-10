@@ -3,3 +3,7 @@
 build/*
 sync/*
 log
+*.log
+*.ldb
+wubi86.userdb/*
+wubi86.userdb/000515.log

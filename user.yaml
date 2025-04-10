@@ -1,4 +1,8 @@
 var:
-  last_build_time: 1742197189
+  last_build_time: 1744271127
   option:
     simplification: true
+  previously_selected_schema: wubi_pinyin
+  schema_access_time:
+    clover: 1744270202
+    wubi_pinyin: 1744270215

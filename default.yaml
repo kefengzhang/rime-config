@@ -10,14 +10,15 @@ config_version: '2023-03-03'
 
 # 方案列表
 schema_list:
-  - schema: rime_ice
-  - schema: double_pinyin
-  - schema: double_pinyin_flypy
+  - schema: clover
+#     - schema: wubi06_pinyin
+  - schema: wubi_pinyin
+#     - schema: double_pinyin
 
 
 # 菜单
 menu:
-  page_size: 5  # 候选词个数
+  page_size: 9  # 候选词个数
   alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⑩ ]  # 修改候选项标签
   # alternative_select_keys: ASDFGHJKL  # 如编码字符占用数字键，则需另设选字键
 

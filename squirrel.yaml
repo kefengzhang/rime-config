@@ -38,6 +38,10 @@ app_options:
     ascii_mode: true   # 英文
   com.google.Chrome:
     ascii_mode: false   # 中文
+  com.googlecode.iterm2:
+    ascii_mode: true   # 英文
+  com.bytedance.macos.feishu:
+    ascii_mode: false   # 中文
 
 style:
   # 选择皮肤，亮色与暗色主题
