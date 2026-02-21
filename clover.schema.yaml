@@ -181,6 +181,7 @@ speller:
 
 translator:
   dictionary: clover
+  enable_user_dict: true   # 启用用户词典，支持候选词排序学习
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/

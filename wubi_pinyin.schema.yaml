@@ -63,6 +63,7 @@ translator:
   enable_charset_filter: true
   enable_sentence: true
   enable_encoder: true
+  enable_user_dict: true   # 启用用户词典，支持候选词排序学习
   encode_commit_history: true
   max_phrase_length: 4
   disable_user_dict_for_patterns:
