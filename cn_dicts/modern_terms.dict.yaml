@@ -1,0 +1,74 @@
+# 现代词汇 - 科技、网络、生活热词
+# encoding: utf-8
+#
+---
+name: modern_terms
+version: "1"
+sort: by_weight
+...
+
+##### AI 与科技
+人工智能	ren gong zhi neng	100000
+机器学习	ji qi xue xi	80000
+深度学习	shen du xue xi	80000
+大语言模型	da yu yan mo xing	70000
+大模型	da mo xing	90000
+生成式AI	sheng cheng shi AI	60000
+元宇宙	yuan yu zhou	70000
+区块链	qu kuai lian	80000
+加密货币	jia mi huo bi	60000
+云计算	yun ji suan	90000
+大数据	da shu ju	90000
+物联网	wu lian wang	80000
+充电桩	chong dian zhuang	70000
+新能源汽车	xin neng yuan qi che	70000
+电动汽车	dian dong qi che	80000
+短视频	duan shi pin	90000
+直播带货	zhi bo dai huo	80000
+网红	wang hong	90000
+内卷	nei juan	90000
+躺平	tang ping	90000
+摆烂	bai lan	80000
+精神内耗	jing shen nei hao	80000
+ChatGPT	ChatGPT	80000
+文心一言	wen xin yi yan	60000
+通义千问	tong yi qian wen	60000
+深度学习框架	shen du xue xi kuang jia	50000
+
+##### 生活与网络
+健康码	jian kang ma	80000
+行程码	xing cheng ma	70000
+核酸	he suan	70000
+抗原检测	kang yuan jian ce	60000
+居家办公	ju jia ban gong	80000
+远程办公	yuan cheng ban gong	80000
+外卖	wai mai	90000
+快递	kuai di	90000
+外卖员	wai mai yuan	70000
+快递员	kuai di yuan	70000
+直播间	zhi bo jian	80000
+弹幕	dan mu	80000
+热搜	re sou	90000
+吃瓜	chi gua	80000
+打工人	da gong ren	80000
+社恐	she kong	70000
+社牛	she niu	70000
+emo	emo	80000
+破防	po fang	70000
+绝绝子	jue jue zi	60000
+yyds	yyds	70000
+真香	zhen xiang	80000
+
+##### 工作与职场
+KPI	KPI	80000
+OKR	OKR	60000
+996	996	70000
+加班	jia ban	90000
+摸鱼	mo yu	80000
+背锅	bei guo	70000
+甩锅	shuai guo	70000
+复盘	fu pan	70000
+对齐	dui qi	60000
+拉齐	la qi	60000
+迭代	die dai	70000
+落地	luo di	70000

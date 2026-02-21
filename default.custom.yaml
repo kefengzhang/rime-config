@@ -5,7 +5,20 @@
 #   %APPDATA%\Rime       (windows)
 
 patch:
-  "menu/page_size": 8
+  "menu/page_size": 10
+  # 不设置 alternative_select_keys，让 Rime 用 alternative_select_labels 显示圆圈数字
+  # 默认数字键 1~9、0 选字
+  "menu/alternative_select_labels":
+    - "①"
+    - "②"
+    - "③"
+    - "④"
+    - "⑤"
+    - "⑥"
+    - "⑦"
+    - "⑧"
+    - "⑨"
+    - "⓪"
   schema_list:
     - schema: clover
 #     - schema: wubi06_pinyin
