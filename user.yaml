@@ -1,9 +1,9 @@
 var:
-  last_build_time: 1771679002
+  last_build_time: 1771682119
   option:
     ascii_punct: false
     simplification: true
   previously_selected_schema: wubi_pinyin
   schema_access_time:
-    clover: 1744270202
-    wubi_pinyin: 1744270215
+    clover: 1771682082
+    wubi_pinyin: 1771682096

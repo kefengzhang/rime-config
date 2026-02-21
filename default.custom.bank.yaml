@@ -10,7 +10,5 @@ patch:
     - schema: clover
 #     - schema: wubi06_pinyin
     - schema: wubi_pinyin
-    - schema: pinyin_simp
-    - schema: double_pinyin
     
 #   sync_dir: '/Users/zhangkefeng/works/data/OneDrive/RimeSync'
