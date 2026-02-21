@@ -33,8 +33,9 @@ switcher:
     # - Control+Shift+grave
   save_options:  # 开关记忆，从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
     - ascii_punct
-    - traditionalization
-    - emoji
+    - zh_simp_s2t      # clover 简繁切换
+    - simplification  # wubi_pinyin 简繁切换
+    - emoji_suggestion # clover emoji
   fold_options: true            # 呼出时是否折叠，多方案时建议折叠 true ，一个方案建议展开 false
   abbreviate_options: true      # 折叠时是否缩写选项
   option_list_separator: ' / '  # 折叠时的选项分隔符
@@ -111,7 +112,7 @@ key_binder:
     # - { when: always, accept: Control+Shift+1, select: .next }               # 在最近的两个方案之间切换
     # - { when: always, accept: Control+Shift+2, toggle: ascii_mode }          # 切换中英
     - { when: always, accept: Control+Shift+3, toggle: ascii_punct }           # 切换中英标点
-    - { when: always, accept: "Control+Shift+4", toggle: traditionalization }  # 切换简繁
+    - { when: always, accept: "Control+Shift+4", toggle: zh_simp_s2t }  # clover 切换简繁
     # - { when: always, accept: Control+Shift+5, toggle: full_shape }          # 切换全半角
 
     # emacs_editing:

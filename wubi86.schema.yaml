@@ -12,7 +12,7 @@ schema:
     碼表源自 ibus-table
     敲 z 鍵進入拼音反查
   dependencies:
-    - pinyin_simp
+    - clover  # 拼音反查使用 clover（pinyin_simp 已移除）
 
 switches:
   - name: ascii_mode

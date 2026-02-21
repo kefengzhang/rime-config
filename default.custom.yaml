@@ -1,4 +1,4 @@
-# default.custom.yaml
+# default.custom.yaml - patches default.yaml
 # save it to:
 #   ~/.config/ibus/rime  (linux)
 #   ~/Library/Rime       (macos)
@@ -10,5 +10,5 @@ patch:
     - schema: clover
 #     - schema: wubi06_pinyin
     - schema: wubi_pinyin
-    
+
 #   sync_dir: '/Users/zhangkefeng/works/data/OneDrive/RimeSync'
