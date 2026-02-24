@@ -1,0 +1,5 @@
+# wubi_pinyin 拼音增强：用户词典学习 + 五笔优先 + 五笔码提示
+
+patch:
+  "engine/processors/@next": lua_processor@pinyin_commit_processor
+  "engine/filters/@0": lua_filter@pinyin_learn_filter

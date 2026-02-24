@@ -275,6 +275,192 @@ function irime_t9_preedit(input, env)
     end
 end
 -------------------------------------------------------------
+-- wubi_pinyin 拼音增强
+-- 功能：1) 拼音候选自动学习，写入 clover.userdb
+--       2) 候选排序：准确五笔 → 准确拼音 → 推测五笔 → 推测拼音
+--       3) 拼音候选显示五笔码提示
+-------------------------------------------------------------
+
+-- filter 和 processor 之间共享数据：记录当前候选及其拼音编码
+local pinyin_learn_shared = {}
+
+-- 懒加载五笔反查数据库
+local function ensure_wubi_rev(env)
+    if not env.wubi_rev then
+        local ok, db = pcall(ReverseDb, "build/wubi86.reverse.bin")
+        env.wubi_rev = ok and db or nil
+    end
+    return env.wubi_rev
+end
+
+local function is_chinese(text)
+    return text and utf8.len(text) and utf8.len(text) >= 1
+        and not text:match("^[%a%d%p%s]+$")
+end
+
+-- 提取拼音编码（仅对拼音候选使用）
+local function extract_pinyin_code(cand, inp)
+    local comment = cand.comment
+    if comment and comment ~= "" and comment:match("^[%a%s']+$")
+        and not comment:match("%d") then
+        return comment:gsub("%s+", " "):match("^%s*(.-)%s*$") .. " "
+    end
+    if inp and #inp >= 2 then
+        return inp .. " "
+    end
+    return nil
+end
+
+local function append_wubi_comment(cand, wubi_rev)
+    if not wubi_rev then return end
+    local txt = cand.text or ""
+    if not is_chinese(txt) then return end
+    local wubi_code = wubi_rev:lookup(txt)
+    if wubi_code and wubi_code ~= "" then
+        local g = cand:get_genuine()
+        local orig = g.comment or ""
+        g.comment = orig .. " 〔" .. wubi_code .. "〕"
+    end
+end
+
+-- 候选分桶（基于 cand.type、cand._end 覆盖范围、cand.quality）：
+--   准确 = type 为 table/phrase 且 cand._end 覆盖完整输入（候选匹配了全部输入）
+--   推测 = completion/sentence/未覆盖完整输入（前缀补全、自动造句、部分匹配）
+--   1=准确五笔  2=准确拼音  3=推测五笔  4=推测拼音
+local function classify_candidate(cand, inp_len)
+    local t = cand.type
+    local t_str = (type(t) == "string") and t or ""
+
+    -- 判断候选是否覆盖完整输入
+    if t_str == "table" or t_str == "user_table"
+       or t_str == "phrase" or t_str == "user_phrase" then
+        local cand_end = cand._end
+        if type(cand_end) == "number" and cand_end >= inp_len then
+            if t_str == "table" or t_str == "user_table" then
+                return 1  -- 准确五笔
+            else
+                return 2  -- 准确拼音
+            end
+        end
+    end
+
+    -- 未覆盖完整输入、completion、sentence 等 → 推测
+    local quality = cand.quality
+    if type(quality) == "number" and quality > 50 then
+        return 3  -- 推测五笔
+    else
+        return 4  -- 推测拼音
+    end
+end
+
+-------------------------------------------------------------
+-- pinyin_learn_filter：候选过滤器
+-- 收集全部候选 → 按 4 级优先级分桶 → 记录拼音编码 → 添加五笔码提示 → 按桶顺序输出
+-------------------------------------------------------------
+function pinyin_learn_filter(input, env)
+    if env.engine.schema.schema_id ~= "wubi_pinyin" then
+        for cand in input:iter() do yield(cand) end
+        return
+    end
+
+    local ctx = env.engine.context
+    local inp = ctx.input
+    if not inp or inp == "" then
+        for cand in input:iter() do yield(cand) end
+        return
+    end
+
+    local wubi_rev = ensure_wubi_rev(env)
+    local is_alpha = inp:match("^[a-z']+$") and #inp >= 2
+
+    if is_alpha then
+        pinyin_learn_shared.candidates = {}
+    end
+
+    -- 收集并分桶：1=准确五笔 2=准确拼音 3=推测五笔 4=推测拼音 5=其他
+    local inp_len = #inp
+    local buckets = {{}, {}, {}, {}, {}}
+    for cand in input:iter() do
+        if is_chinese(cand.text) then
+            local b = classify_candidate(cand, inp_len)
+            -- 仅记录拼音候选（桶2/4）用于学习，避免将五笔候选错误写入 clover.userdb
+            if is_alpha and (b == 2 or b == 4) then
+                local code = extract_pinyin_code(cand, inp)
+                if code then
+                    pinyin_learn_shared.candidates[cand.text] = code
+                end
+            end
+            table.insert(buckets[b], cand)
+        else
+            table.insert(buckets[5], cand)
+        end
+    end
+
+    -- 固定顺序：准确五笔 → 准确拼音 → 推测五笔 → 推测拼音 → 其他
+    for b = 1, 5 do
+        for _, cand in ipairs(buckets[b]) do
+            if is_chinese(cand.text) then
+                append_wubi_comment(cand, wubi_rev)
+            end
+            yield(cand)
+        end
+    end
+end
+
+-------------------------------------------------------------
+-- pinyin_commit_processor：按键处理器
+-- 监听 commit 事件，将拼音候选写入 clover.userdb
+-------------------------------------------------------------
+function pinyin_commit_processor(key, env)
+    return 2 -- kNoop
+end
+
+local function pinyin_commit_init(env)
+    if env.pinyin_notifier_connected then return end
+
+    local engine_ref = env.engine
+    env.pinyin_notifier = engine_ref.context.commit_notifier:connect(function()
+        if engine_ref.schema.schema_id ~= "wubi_pinyin" then return end
+
+        local pc = pinyin_learn_shared.candidates
+        if not pc then return end
+
+        local hist = engine_ref.context.commit_history
+        if not hist or hist:size() == 0 then return end
+
+        local rec = hist:back()
+        local text = rec and rec.text
+        if not text or text == "" then return end
+
+        local code = pc[text]
+        if not code or code == "" then return end
+
+        local ok, clover_schema = pcall(Schema, "clover")
+        if not ok or not clover_schema then return end
+
+        local mok, mem = pcall(Memory, engine_ref, clover_schema, "translator")
+        if not mok or not mem or not mem.update_userdict then return end
+
+        local entry = DictEntry()
+        entry.text = text
+        entry.custom_code = code
+        pcall(function() mem:update_userdict(entry, 5, "") end)
+
+        pinyin_learn_shared.candidates = nil
+    end)
+    env.pinyin_notifier_connected = true
+end
+
+local function pinyin_commit_fini(env)
+    if env.pinyin_notifier and env.pinyin_notifier_connected then
+        env.pinyin_notifier:disconnect()
+        env.pinyin_notifier_connected = nil
+    end
+end
+
+pinyin_commit_processor.init = pinyin_commit_init
+pinyin_commit_processor.fini = pinyin_commit_fini
+-------------------------------------------------------------
 -- Unicode 输入
 -- 复制自： https://github.com/shewer/librime-lua-script/blob/main/lua/component/unicode.lua
 function unicode(input, seg, env)

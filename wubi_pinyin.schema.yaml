@@ -51,11 +51,12 @@ engine:
     - punct_translator
     - reverse_lookup_translator
     - table_translator
-    
+    - script_translator@pin_yin
+
 
 speller:
   delimiter: " ;'"
-  max_code_length: 10  # 四碼頂字上屏
+  max_code_length: 10
 
 translator:
   dictionary: wubi86
@@ -63,15 +64,31 @@ translator:
   enable_charset_filter: true
   enable_sentence: true
   enable_encoder: true
-  enable_user_dict: true   # 启用用户词典，支持候选词排序学习
+  enable_user_dict: true
   encode_commit_history: true
   max_phrase_length: 4
+  initial_quality: 100
   disable_user_dict_for_patterns:
     - "^z.*$"
 
+# table_translator 需要 segment 带 table 标签才会处理
 abc_segmentor:
   extra_tags:
-    - reverse_lookup
+    - table
+
+# script_translator@pin_yin 按 name_space "pin_yin" 读取此块配置
+pin_yin:
+  dictionary: clover
+  prism: clover
+  initial_quality: -1
+  enable_user_dict: true
+  enable_sentence: true
+  enable_encoder: true
+  encode_commit_history: true
+  preedit_format:
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
 
 reverse_lookup:
   dictionary: clover
