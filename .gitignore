@@ -1,9 +1,25 @@
 /.idea
 /.vscode
-build/*
-sync/*
-log
+
+# RIME编译输出
+build/
+
+# RIME用户同步数据
+sync/
+
+# RIME用户数据库（所有.userdb目录）
+*.userdb/
+
+# 日志文件
 *.log
+LOG
+LOG.old
+
+# LevelDB数据库文件
 *.ldb
-wubi86.userdb/*
-wubi86.userdb/000515.log
+CURRENT
+LOCK
+MANIFEST-*
+
+# 临时和缓存文件
+.DS_Store
