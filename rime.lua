@@ -321,7 +321,7 @@ local function append_wubi_comment(cand, wubi_rev)
         wubi_code = wubi_code:match("^%S+")
         local g = cand:get_genuine()
         local orig = g.comment or ""
-        g.comment = orig .. " 〔" .. wubi_code .. "〕"
+        g.comment = orig .. "[" .. wubi_code .. "]"
     end
 end
 
