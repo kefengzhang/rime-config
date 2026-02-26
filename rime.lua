@@ -317,6 +317,8 @@ local function append_wubi_comment(cand, wubi_rev)
     if not is_chinese(txt) then return end
     local wubi_code = wubi_rev:lookup(txt)
     if wubi_code and wubi_code ~= "" then
+        -- 只取第一个五笔码（多个码用空格分隔）
+        wubi_code = wubi_code:match("^%S+")
         local g = cand:get_genuine()
         local orig = g.comment or ""
         g.comment = orig .. " 〔" .. wubi_code .. "〕"
