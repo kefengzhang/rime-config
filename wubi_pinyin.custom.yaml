@@ -1,5 +1,7 @@
 # wubi_pinyin 拼音增强：用户词典学习 + 五笔优先 + 五笔码提示
+# 拼音段使用 clover 词库（dependencies: clover），但不继承 clover 的 emoji/符号滤镜
 
 patch:
   "engine/processors/@next": lua_processor@pinyin_commit_processor
-  "engine/filters/@0": lua_filter@pinyin_learn_filter
+  "engine/filters":
+    - lua_filter@pinyin_learn_filter

@@ -311,6 +311,21 @@ local function extract_pinyin_code(cand, inp)
     return nil
 end
 
+-- 去掉 comment 里 clover emoji/符号联想产生的 ☯、🍁、◾ 等，只保留拼音/五笔类 ASCII 注释
+local function strip_symbol_tips_from_comment(comment)
+    if not comment or comment == "" then
+        return ""
+    end
+    local result = {}
+    for _, code in utf8.codes(comment) do
+        local c = utf8.char(code)
+        if c:match("^[%a%d%[%]%(%)%:'%s%.%,]$") or code == 0xFC or code == 0xDC then
+            result[#result + 1] = c
+        end
+    end
+    return table.concat(result):match("^%s*(.-)%s*$") or ""
+end
+
 local function append_wubi_comment(cand, wubi_rev)
     if not wubi_rev then return end
     local txt = cand.text or ""
@@ -323,6 +338,13 @@ local function append_wubi_comment(cand, wubi_rev)
         local orig = g.comment or ""
         g.comment = orig .. "[" .. wubi_code .. "]"
     end
+end
+
+-- 整理候选 comment：先清除符号提示，再追加五笔码
+local function prepare_candidate_comment(cand, wubi_rev)
+    local g = cand:get_genuine()
+    g.comment = strip_symbol_tips_from_comment(g.comment or "")
+    append_wubi_comment(cand, wubi_rev)
 end
 
 -- 候选分桶（基于 cand.type、cand._end 覆盖范围、cand.quality）：
@@ -402,7 +424,7 @@ function pinyin_learn_filter(input, env)
     for b = 1, 5 do
         for _, cand in ipairs(buckets[b]) do
             if is_chinese(cand.text) then
-                append_wubi_comment(cand, wubi_rev)
+                prepare_candidate_comment(cand, wubi_rev)
             end
             yield(cand)
         end
