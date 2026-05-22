@@ -1,7 +1,80 @@
-# wubi_pinyin 拼音增强：用户词典学习 + 五笔优先 + 五笔码提示
-# 拼音段使用 clover 词库（dependencies: clover），但不继承 clover 的 emoji/符号滤镜
+# wubi_pinyin 优化补丁
 
 patch:
+  # 默认中文模式（reset: 0 = 中文）
+  "switches/@0/reset": 0
+
+  # 拼音段：减少自动造句；选词记录由 lua + encode_commit_history 共同完成
+  "pin_yin/enable_sentence": false
+  "pin_yin/encode_commit_history": true
+
+  # 自定义短语（高优先级，见 custom_phrase.txt）
+  "engine/translators/@before 2": table_translator@custom_phrase
+  custom_phrase:
+    dictionary: ""
+    user_dict: custom_phrase
+    db_class: tabledb
+    enable_completion: false
+    enable_sentence: false
+    initial_quality: 80
+
+  # 五笔优先于拼音（原 100 / -1 差距不足）
+  "translator/initial_quality": 500
+  "pin_yin/initial_quality": -200
+
   "engine/processors/@next": lua_processor@pinyin_commit_processor
   "engine/filters":
     - lua_filter@pinyin_learn_filter
+    - lua_filter@long_word_filter
+    - lua_filter@reduce_english_filter
+
+  # 长词优先：仅对 4 码以上纯字母（拼音）输入生效，见 rime.lua
+  long_word_filter:
+    count: 2
+    idx: 3
+
+  # 常见英文短词降权（精确匹配编码时）
+  # 注意：列表里的词都是「输入这串字母时把英文降到第 idx 位」，因此
+  # 不要加任何与五笔/拼音同码的字母组合（如 js→果、go→国、py→朋友 等）。
+  reduce_english_filter:
+    idx: 5
+    words:
+      - mail
+      - gmail
+      - http
+      - https
+      - www
+      - json
+      - vim
+      - mac
+      - win
+      - cpu
+      - gpu
+      - sql
+      - css
+      - html
+      - ai
+
+  # 反查提示 + 翻页快捷键
+  "reverse_lookup/tips": "〔拼音反查 `码'〕"
+
+  key_binder:
+    bindings:
+      - { when: paging, accept: comma, send: Page_Up }
+      - { when: has_menu, accept: period, send: Page_Down }
+      - { when: paging, accept: bracketleft, send: Page_Up }
+      - { when: has_menu, accept: bracketright, send: Page_Down }
+
+  # lua 分桶与 comment 行为（见 rime.lua）
+  pinyin_learn_filter:
+    max_guess_per_bucket: 3
+    max_guess_input_len: 6
+    min_learn_code_len: 3
+    wubi_comment_on_pinyin_only: true
+    wubi_first_max_len: 3           # 编码长度 1～3：五笔优先
+    pinyin_first_min_len: 4         # 编码长度 ≥4：拼音优先（5 码及以上）
+    wubi_accurate_front_max_len: 4  # 编码长度 ≤4（<5）：准确五笔单字/词置顶
+    learn_weight_base: 48           # 用户词典初始权重
+    learn_weight_step: 24           # 每多选一次增加的权重
+    filter_unrenderable: true       # 过滤缺字/问号/PUA/扩展区等无法正常显示的候选
+    # 常用字排序依赖 ~/Library/Rime/char_common.txt（clover 高频 3500 简字）

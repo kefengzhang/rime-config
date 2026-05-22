@@ -1,13 +1,7 @@
 # default.custom.yaml - patches default.yaml
-# save it to:
-#   ~/.config/ibus/rime  (linux)
-#   ~/Library/Rime       (macos)
-#   %APPDATA%\Rime       (windows)
 
 patch:
   "menu/page_size": 10
-  # 不设置 alternative_select_keys，让 Rime 用 alternative_select_labels 显示圆圈数字
-  # 默认数字键 1~9、0 选字
   "menu/alternative_select_labels":
     - "①"
     - "②"
@@ -19,9 +13,18 @@ patch:
     - "⑧"
     - "⑨"
     - "⓪"
-  schema_list:
-    - schema: clover
-#     - schema: wubi06_pinyin
-    - schema: wubi_pinyin
 
-#   sync_dir: '/Users/zhangkefeng/works/data/OneDrive/RimeSync'
+  # 主方案置顶；clover 保留作备用
+  schema_list:
+    - schema: wubi_pinyin
+    - schema: clover
+
+  sync_dir: "/Users/zhangkefeng/works/data/OneDrive/RimeSync"
+
+  switcher:
+    save_options:
+      - ascii_punct
+      - zh_simp_s2t
+      - simplification
+      - emoji_suggestion
+      - symbol_support

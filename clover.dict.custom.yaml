@@ -1,0 +1,20 @@
+# 精简 clover 词库：日常只保留常用扩展，专业词库见下方注释按需取消 #
+patch:
+  import_tables:
+    - clover.base
+    - clover.phrase
+    - cn_dicts/modern_terms
+    # - sogou_new_words          # 网络新词，噪声较多，按需开启
+    - cn_dicts/others
+    # --- 以下为 THUOCL 专业词库，按需取消注释 ---
+    # - THUOCL_animal
+    # - THUOCL_caijing
+    # - THUOCL_car
+    - THUOCL_chengyu
+    # - THUOCL_diming
+    # - THUOCL_food
+    - THUOCL_IT
+    # - THUOCL_law
+    # - THUOCL_lishimingren
+    # - THUOCL_medical
+    # - THUOCL_poem

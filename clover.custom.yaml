@@ -1,0 +1,8 @@
+# clover 方案补丁：关闭候选 comment 区的 emoji/符号提示
+patch:
+  "switches/@1/reset": 0   # emoji_suggestion 默认关
+  "switches/@2/reset": 0   # symbol_support 默认关
+
+  "engine/filters":
+    - simplifier
+    - uniquifier
